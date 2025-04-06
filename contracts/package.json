@@ -1,0 +1,20 @@
+{
+  "name": "@projecta/multisig-contracts",
+  "version": "0.6.3",
+  "description": "Multisig contract",
+  "files": [
+    "**/*.sol",
+    "!mock/internal/**",
+    "artifacts",
+    "!artifacts/contracts/mock/internal/**"
+  ],
+  "scripts": {
+    "preversion": "[ -n \"$BUMP_FROM_PROJECT_ROOT_DIRECTORY\" ]"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "@openzeppelin/contracts": "=4.8.1",
+    "@openzeppelin/contracts-upgradeable": "=4.9.2"
+  }
+}
