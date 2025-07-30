@@ -23,6 +23,7 @@ export default {
       /^Multisig\/invalidAddress: (transaction to zero address|newOwner is Executor|new executor is owner)/,
     invalidSignature:
       /^Multisig\/invalidSignature: (not enough confirmations to execute transaction|signature is not valid|signer is not owner|signature length must be 65)/,
+    nonRetrievable: /^Multisig\/nonRetrievable:/,
   },
   SelfCall: {
     forbidden: /^SelfCall\/forbidden: (caller is not this contract)/,
