@@ -45,6 +45,12 @@ describe("MultisigNonRetrievable OwnerManager", function () {
         nxErrors.OwnerManager.invalidThreshold
       );
     });
+
+    it("should revert if newThreshold is 0", async function () {
+      const { MultisigNonRetrievable, owner1 } = await loadFixture(setupFixture);
+      const owners = [await owner1.getAddress()];
+      await expect(MultisigNonRetrievable.deploy(owners, 0)).to.be.revertedWith(nxErrors.OwnerManager.invalidThreshold);
+    });
   });
 
   describe("getOwnerCount", function () {

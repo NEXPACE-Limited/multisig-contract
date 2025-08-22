@@ -24,6 +24,7 @@ contract OwnerManager is SelfCall {
 
     constructor(address[] memory owners_, uint256 threshold_) {
         require(owners_.length > 0, "OwnerManager/invalidRequest: owners required");
+        require(threshold_ >= 1, "OwnerManager/invalidThreshold: newThreshold must be higher than or equal to 1");
         require(
             threshold_ <= owners_.length,
             "OwnerManager/invalidThreshold: threshold must be less than or equal to length of owners"

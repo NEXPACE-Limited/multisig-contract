@@ -8,7 +8,6 @@ import nxErrors from "../utils/nx-errors";
 describe("Multisig OwnerManager", function () {
   async function setupFixture() {
     const [owner1, owner2, owner3, executor1, executor2] = (await ethers.getSigners()).sort(compareAddress);
-
     const Multisig = await ethers.getContractFactory("Multisig");
     const multisig = await Multisig.connect(executor1).deploy([await owner1.getAddress()], 1);
 
@@ -37,6 +36,12 @@ describe("Multisig OwnerManager", function () {
       await expect(Multisig.deploy(owners, owners.length + 1)).to.be.revertedWith(
         nxErrors.OwnerManager.invalidThreshold
       );
+    });
+
+    it("should revert if newThreshold is 0", async function () {
+      const { Multisig, owner1 } = await loadFixture(setupFixture);
+      const owners = [await owner1.getAddress()];
+      await expect(Multisig.deploy(owners, 0)).to.be.revertedWith(nxErrors.OwnerManager.invalidThreshold);
     });
   });
 
